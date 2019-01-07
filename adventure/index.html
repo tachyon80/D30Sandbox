@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adventure Generator</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body id="adv">
+    <h1>D30 Sandbox Companion</h1>
+    <div class="menu">
+        <a href="../adventure/" class="advLink">Adventure Generator</a>
+        <a href="../wilderness/" class="wilLink">Wilderness Locations &amp; Locales</a>
+        <a href="../settlements/" class="setLink">Settlements</a>
+        <a href="../npc/" class="npcLink">NPCs</a>
+    </div>
+    <div class="content">
+        <button id="advRoll" class="rollBtn">ROLL</button>
+        <span>for adventure!</span>
+        <div class="resultRow">
+            <h4>Trigger:</h4>
+            <span id="trigger"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Major Goal:</h4>
+            <span id="goal"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Obstacle To Goal:</h4>
+            <span id="obstacle"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Location:</h4>
+            <span id="location"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Location Feature:</h4>
+            <span id="locatFeature"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Phenomena:</h4>
+            <span id="phenom"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Villain Goal/Reason:</h4>
+            <span id="villain"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Artifact/Relic:</h4>
+            <span id="artifact"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Theme:</h4>
+            <span id="theme"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Key NPC:</h4>
+            <span id="keynpc"></span>
+        </div>
+    </div>
+    <script src="../js/jquery-3.3.1.min.js"></script>
+    <script src="../js/basic.js"></script>
+    <script src="../js/adv-adventure.js"></script>
+    <script src="../js/npc-sage.js"></script>
+</body>
+</html>
