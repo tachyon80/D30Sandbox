@@ -658,7 +658,7 @@ function sageGen() {
     //knock off specialties if you need to based on specialCnt
     if (specialCnt === 3) {
         specials.pop();
-    } else if (specialCnt === 4) {
+    } else if (specialCnt < 3) {
         specials.splice(2, 2);
     }
     let result = "The sage's major field of study is " + majorField + ". ";
@@ -666,6 +666,17 @@ function sageGen() {
     result += "Minor field(s): " + minors.join(', ') + ".";
     document.getElementById("sageInfo").innerHTML = result;
 }
+function answerGen() { //this function generates the table with 12 cells for how likely a sage can answer a question
+    let stats = [20,23,26,7,15,20,3,9,14,2,10]; //array to hold 11 numbers for answer table
+    let i;
+    for (i=0;i<11;i++) {
+        stats[i] += rollDie(1,3);
+        stats[i] += " (" + (stats[i] / .3).toFixed(1).replace(/.0$/, "") + "&percnt;)";
+        document.getElementById("val" + i).innerHTML = stats[i];
+    }
+    $("table:first").removeClass("hideIt");
+}
 $("#sageRoll").click(function () {
     sageGen();
+    answerGen();
 });

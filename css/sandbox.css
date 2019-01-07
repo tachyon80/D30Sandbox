@@ -158,3 +158,23 @@ h4 { /* result title */
 .content p {
     margin: 1rem 0;
 }
+.hideIt {
+    display: none;
+}
+.content table th,
+.content table td {
+    border: 1px solid #999;
+    text-align: center;
+    padding: 0.5rem;
+}
+.content table td:first-child {
+    text-align: left;
+}
+.content table th {
+    font-weight: bold;
+}
+.content table .tableTitle {
+    border-top: none;
+    border-left: none;
+    border-right: none;
+}
