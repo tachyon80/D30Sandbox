@@ -661,8 +661,8 @@ function sageGen() {
     } else if (specialCnt < 3) {
         specials.splice(2, 2);
     }
-    let result = "The sage's major field of study is " + majorField + ". ";
-    result += "Specialties are " + specials.join(', ') + ". ";
+    let result = "Major field of study: " + majorField + ".<br>";
+    result += "Specialties: " + specials.join(', ') + ".<br>";
     result += "Minor field(s): " + minors.join(', ') + ".";
     document.getElementById("sageInfo").innerHTML = result;
 }
