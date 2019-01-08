@@ -676,7 +676,23 @@ function answerGen() { //this function generates the table with 12 cells for how
     }
     $("table:first").removeClass("hideIt");
 }
+function abilityGen(numVal) {
+    let abArray, i;
+    if (numVal < 2) {
+        abArray = ["c","a","b","b","b","c"];
+    } else {
+        abArray = ["c","a","a","b","b","c"];
+    }
+    for (i=0;i<6;i++) {
+        document.getElementById("abStat" + i).innerHTML = rollAbility(abArray[i]);
+    }
+}
 $("#sageRoll").click(function () {
     sageGen();
     answerGen();
+    $("#askClass").removeClass("hideIt");
+});
+$("#abilityRoll").click(function () {
+    abilityGen(parseInt($("input[name=classType]:checked").val()));
+    $("#showAbilities").removeClass("hideIt");
 });

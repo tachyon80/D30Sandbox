@@ -9,7 +9,7 @@
 <h1>D30 Sandbox Companion</h1>
 <h2>Sage Generator</h2>
 <div class="content">
-    <p>Generate a sage with one click. Ability scores, spells known and languages known must be determined elsewhere.</p>
+    <p>Generate a sage with one click. Spells known and languages known must be determined elsewhere.</p>
     <p>
         <button id="sageRoll" class="rollBtn">ROLL</button>
     </p>
@@ -49,9 +49,24 @@
             <td id="val10"></td>
         </tr>
     </table>
+    <p class="hideIt" id="askClass">
+        To determine abilities, choose sage's class<br>
+        <input type="radio" value="1" name="classType"> Cleric<br>
+        <input type="radio" value="2" name="classType" checked> Magic User or Magic User/Cleric
+        <button id="abilityRoll" class="rollBtn">ROLL ABILITIES</button>
+    </p>
+    <ul class="hideIt" id="showAbilities">
+        <li>STR: <span id="abStat0"></span></li>
+        <li>INT: <span id="abStat1"></span></li>
+        <li>WIS: <span id="abStat2"></span></li>
+        <li>DEX: <span id="abStat3"></span></li>
+        <li>CON: <span id="abStat4"></span></li>
+        <li>CHA: <span id="abStat5"></span></li>
+    </ul>
 </div>
 <script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/basic.js"></script>
 <script src="../js/npc-sage.js"></script>
+<script src="../js/npc-abilityRoller.js"></script>
 </body>
 </html>
