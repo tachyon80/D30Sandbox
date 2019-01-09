@@ -153,7 +153,7 @@ h4 { /* result title */
     position:relative;
     top:1px;
 }
-.directory li { /* proposed class for an organizing table */
+.directory li { /* list of pages on section index pages */
     margin: 1rem 0;
 }
 .content p {
@@ -178,4 +178,7 @@ h4 { /* result title */
     border-top: none;
     border-left: none;
     border-right: none;
+}
+.extraSpacing {
+    margin-top: 1rem;
 }

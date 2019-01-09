@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NPC Occupations</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>NPC Occupations</h2>
+<div class="content">
+    <p>Create a freeman NPC.</p>
+    <p>
+        <input type="radio" name="pickType" value="merchant">
+        <span>merchant</span><br>
+        <input type="radio" name="pickType" value="tradesman">
+        <span>tradesman</span><br>
+        <input type="radio" name="pickType" value="misc">
+        <span>misc.</span><br>
+        <input type="radio" name="pickType" value="random" checked>
+        <span>random</span><br><br>
+        <button id="jobRoll" class="rollBtn">ROLL</button>
+    </p>
+    <div class="resultRow">
+        <h4>Race &amp; Sex:</h4>
+        <span id="occup1"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Occupation:</h4>
+        <span id="occupInfo"></span>
+        <span id="occupationInfo"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Employ:</h4>
+        <span id="occup2"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Offering/Ability:</h4>
+        <span id="occup3"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Ethos/Temperament:</h4>
+        <span id="occup4"></span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/npc-occupation1.js"></script>
+<script src="../js/npc-occupation2.js"></script>
+</body>
+</html>

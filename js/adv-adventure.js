@@ -47,12 +47,28 @@ function theTheme() {
 }
 function keyNpc() {
     let result = rollDie(0,29);
-    let collec = ["cleric","druid (Oe/1e) / cleric (BX)","fighter","paladin (Oe/1e) / fighter (BX)","ranger (Oe/1e) / dwarf (BX)","magic-user","illusionist/magic-user","thief","assassin (Oe/1e) / halfling (BX)","monk (Oe/1e) / elf (BX)","animal trainer","hermit","merchant -","misc. NPC -","pilgrim (as 1st-level cleric)","sage -","scribe","spy (as thief)","smith","tradesman -","king","queen","queen mother","noble","noble household","noble teacher","castle employee","soldier","slave","peasant"];
+    let collec = ["cleric","druid (Oe/1e) / cleric (BX)","fighter","paladin (Oe/1e) / fighter (BX)","ranger (Oe/1e) / dwarf (BX)","magic-user","illusionist/magic-user","thief","assassin (Oe/1e) / halfling (BX)","monk (Oe/1e) / elf (BX)","animal trainer","hermit","merchant -","misc. NPC -","pilgrim (as 1st-level cleric)","sage -","scribe","spy (as thief)","smith","tradesman -","king","queen","queen mother","noble:","noble household:","noble teacher:","castle employee:","soldier","slave","peasant"];
     let final = collec[result];
-    if (result === 15) { //sage
-        final += " <span id=\"sageInfo\"></span>";
-    } else if (result === 12 || result === 13 || result === 19) {
-        final += " <span id='occupationInfo'></span>";
+    switch (result) {
+        case 15: // sage
+            final += " <span id=\"sageInfo\"></span>";
+            break;
+        case 12:
+        case 13:
+        case 19:
+            final += " <span id='occupationInfo'></span>";
+            break;
+        case 23:
+            final += " <span id='nobTitle'></span> - <span id='nobRelat'></span>";
+            break;
+        case 24:
+            final += " <span id='nobHouse'></span>";
+            break;
+        case 25:
+            final += " <span id='nobTeach'></span>";
+            break;
+        case 26:
+            final += " <span id='nobCast'></span>";
     }
     document.getElementById("keynpc").innerHTML = final;
     switch (result) {
@@ -68,6 +84,17 @@ function keyNpc() {
         case 19:
             jobMaker("tradesman");
             break;
+        case 23:
+            noble();
+            break;
+        case 24:
+            house();
+            break;
+        case 25:
+            teacher();
+            break;
+        case 26:
+            castle();
     }
 }
 $("#advRoll").click(function () {
