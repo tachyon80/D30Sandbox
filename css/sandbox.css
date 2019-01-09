@@ -182,3 +182,20 @@ h4 { /* result title */
 .extraSpacing {
     margin-top: 1rem;
 }
+label { /* title for group of inputs */
+    font-weight: bold;
+    font-size: 1.25rem;
+    display: block;
+}
+.sidebyWrap {
+    display: flex;
+}
+.sideBySide {
+    margin: 0 2rem 1rem 0;
+}
+.sideBySide input {
+    vertical-align: middle;
+}
+.sideBySide input[type=radio] {
+    margin: 0 2px 0 0;
+}
