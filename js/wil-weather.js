@@ -300,8 +300,11 @@ function aResult(temp) {
     }
     return result;
 }
-function bResult(temp) {
-    //
+function bResult(temp,severity,pause) {
+    let i,j,result;
+    let thisBlock = [];
+    let tornado = 0;
+    let tornado2 = 0;
 }
 function fResult(temp) {
     let i,j,result;
@@ -450,9 +453,9 @@ after accessing a value, process it with the code block above
             break;
         case 2:
             if (stormRoll1 === 30) {
-                //D
+                stormInfo = bResult(temp,"n",false);
             } else if (stormRoll1 === 29) {
-                //B
+                stormInfo = bResult(temp,"n",true);
             } else if (stormRoll1 > 25) {
                 stormInfo = aResult(temp);
             } else {
@@ -463,13 +466,13 @@ after accessing a value, process it with the code block above
             if (stormRoll1 === 30) {
                 stormInfo = fResult(temp);
             } else if (stormRoll1 === 29) {
-                //E
+                stormInfo = bResult(temp,"s",false);
             } else if (stormRoll1 > 24) {
-                //D
+                stormInfo = bResult(temp,"n",false);
             } else if (stormRoll1 === 24) {
-                //C
+                stormInfo = bResult(temp,"s",true);
             } else if (stormRoll1 > 19) {
-                //B
+                stormInfo = bResult(temp,"n",true);
             } else if (stormRoll1 > 15) {
                 stormInfo = aResult(temp);
             } else {
@@ -480,13 +483,13 @@ after accessing a value, process it with the code block above
             if (stormRoll1 > 28) {
                 stormInfo = fResult(temp);
             } else if (stormRoll1 > 25) {
-                //E
+                stormInfo = bResult(temp,"s",false);
             } else if (stormRoll1 > 21) {
-                //D
+                stormInfo = bResult(temp,"n",false);
             } else if (stormRoll1 > 18) {
-                //C
+                stormInfo = bResult(temp,"s",true);
             } else if (stormRoll1 > 14) {
-                //B
+                stormInfo = bResult(temp,"n",true);
             } else if (stormRoll1 > 8) {
                 stormInfo = aResult(temp);
             } else {
@@ -497,20 +500,20 @@ after accessing a value, process it with the code block above
             if (stormRoll1 > 27) {
                 stormInfo = fResult(temp);
             } else if (stormRoll1 > 23) {
-                //E
+                stormInfo = bResult(temp,"s",false);
             } else if (stormRoll1 > 18) {
-                //D
+                stormInfo = bResult(temp,"n",false);
             } else if (stormRoll1 > 14) {
-                //C
+                stormInfo = bResult(temp,"s",true);
             } else if (stormRoll1 > 9) {
-                //B
+                stormInfo = bResult(temp,"n",true);
             } else if (stormRoll1 > 4) {
                 stormInfo = aResult(temp);
             } else {
                 stormInfo = "no measurable precipitation today";
             }
     }
-    stormInfo = fResult(temp); //TESTING
+    stormInfo = bResult(temp,"n",true); //TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
     readOut += "<br>Precipitation &amp; storms: " + stormInfo;
     document.getElementById("weathRslt").innerHTML = readOut;
 }
