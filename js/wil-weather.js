@@ -71,8 +71,10 @@ function nonSevere() {
     }
     return [rain,wind,solid,hook];
 }
-function severe() {
-    let roll1 = rollDie(1,30);
+function severe(roll1) { //function can be called with roll result or not
+    if (!roll1) {
+        roll1 = rollDie(1,30);
+    }
     let rain, wind;
     let solid = "";
     let hook = 0;
@@ -221,16 +223,135 @@ function severe() {
     }
     return [rain,wind,solid,hook];
 }
-function aResult() {
+function tornadoCalc(hook) {
+    //calculates tornado and returns hook number if tornado forms
+    let isTornado = 0;
+    if (hook >= rollDie(1,30)) {
+        isTornado = hook;
+    }
+    return isTornado;
+}
+function tornadoBldr(tornado) {
+    let result;
+    switch (tornado) {
+        case tornado < 10:
+            tornado = "minor damage (class 1)";
+            break;
+        case 10:
+            tornado = "(class 2)";
+            break;
+        case 15:
+            tornado = "(class 3)";
+            break;
+        case 20:
+            tornado = "(class 4)";
+            break;
+        case 25:
+            tornado = "(class 5)";
+            break;
+        case 30:
+            tornado = "(class 6)";
+    }
+    result = "A tornado forms nearby or in the distance and causes " + tornado + ".";
+    return result;
+}
+//stormBldr takes which severity table (n or s), temperature and die roll (if any)
+function stormBldr(severity,temp,roll) {
+    function snowCalc(temp,rain) {
+        let type = "rain";
+        let sleet = false;
+        if (temp < 30) {
+            type = "snow";
+            rain = rain * 2;
+        } else if (temp === 30) {
+            sleet = true;
+        }
+        return [type,rain,sleet];
+    }
+    let storm,rainType,sleet="",result;
+    if (severity === "n") {
+        storm = nonSevere();
+    } else {
+        storm = severe(roll);
+    }
+    rainType = snowCalc(temp,storm[0]);
+    if (rainType[2]) { //if sleet = true
+        if (storm[2]) { //if there's light, medium or heavy sleet
+            sleet = " with " + storm[2] + " hail or sleet";
+        }
+    }
+    result = rainType[1] + " inches of " + rainType[0] + sleet + ".<br>";
+    result += "Wind speed " + storm[1] + "mph with gusts of " + (storm[1] * 3) + "mph.<br>";
+    return [result,storm[3]];
+}
+function aResult(temp) {
+    let result;
     let duration = rollDie(1,10) + 20;
-    let storm = nonSevere();
-    return [duration,storm];
+    result = "a storm lasts " + duration + " minutes. ";
+    let storm = stormBldr("n",temp);
+    result += storm[0];
+    let tornado = 0;
+    if (storm[1]) {
+        tornado = tornadoCalc(storm[1]);
+    }
+    if (tornado) {
+        tornado = tornadoBldr(tornado); //tornado becomes final text string w/ tornado info
+        result += tornado;
+    }
+    return result;
 }
-function bResult() {
+function bResult(temp) {
     //
 }
-function fResult() {
-    //
+function fResult(temp) {
+    let i,j,result;
+    let thisBlock = [];
+    let tornado = 0;
+    let tornado2 = 0;
+    let duration = (rollDie(1,30) * 10) + 60; //duration of storm
+    //get data for phases of storm
+    let block1 = stormBldr("s",temp,rollDie(1,10));
+    tornado = tornadoCalc(block1[1]);
+    let block2 = stormBldr("s",temp,rollDie(1,10)+10);
+    tornado2 = tornadoCalc(block2[1]);
+    if (tornado2 > tornado) {
+        tornado = tornado2;
+    }
+    for (i=0;i<(duration-30)/10;i++) {
+        thisBlock[i] = stormBldr("s",temp,rollDie(1,10)+20);
+        tornado2 = tornadoCalc(thisBlock[i][1]);
+        if (tornado2 > tornado) {
+            tornado = tornado2;
+        }
+    }
+    let lastBlock = stormBldr("s",temp,rollDie(1,10));
+    tornado2 = tornadoCalc(lastBlock[1]);
+    if (tornado2 > tornado) {
+        tornado = tornado2;
+    }
+    //create text for duration
+    let hours = Math.floor(duration/60);
+    let minutes = duration%60;
+    if (minutes) {
+        minutes = " and " + minutes + " minutes"
+    } else {
+        minutes = "";
+    }
+    result = "a storm lasts " + hours + " hours" + minutes + ".<br>";
+    //create text for phases of storm
+    result += "First 10 minutes: " + block1[0] + "<br>";
+    result += "Second 10 minutes: " + block2[0] + "<br>";
+    //loop for middle of storm
+    for (j=0;j<thisBlock.length;j++) {
+        result += "Next 10 minutes: " + thisBlock[j][0] + "<br>";
+    }
+    result += "Final 10 minutes: " + lastBlock[0] + "<br>";
+    //report on tornado (or not)
+    if (tornado) {
+        tornado = tornadoBldr(tornado); //tornado becomes final text string w/ tornado info
+        result += tornado;
+    }
+    return result;
 }
 function weather(climate,month,terrain) {
     /*
@@ -243,7 +364,7 @@ after accessing a value, process it with the code block above
     let result = weathArray[climate][terrain][month].toString();
     let precip = parseInt(result.slice(-1));
     let temp = parseInt(result.slice(0, -1));
-    let lowTemp, hiTemp, d3temp = temp, d5temp = temp, stormInfo, stormResult, readOut;
+    let lowTemp, hiTemp, d3temp = temp, d5temp = temp, stormInfo, readOut;
     let stormRoll1 = rollDie(1,30);
     //determine high and low temps
     switch (climate) {
@@ -313,7 +434,7 @@ after accessing a value, process it with the code block above
         case 5:
             d5temp = temp + 10;
     }
-    readOut = "Median temperature: " + temp + "&#176;F Day's high: " + hiTemp + "&#176;F Day's low: " + lowTemp + "&#176;F";
+    readOut = "Median temp: " + temp + "&#176;F Day's high: " + hiTemp + "&#176;F Day's low: " + lowTemp + "&#176;F";
     readOut += "<br>Tomorrow may be " + d3temp + "&#176;F (d3) or " + d5temp + "&#176;F (d5)";
     //determine storms and precipitation
     switch (precip) {
@@ -322,7 +443,7 @@ after accessing a value, process it with the code block above
             break;
         case 1:
             if (stormRoll1 === 30) {
-                stormResult = aResult();
+                stormInfo = aResult(temp);
             } else {
                 stormInfo = "no measurable precipitation today";
             }
@@ -333,14 +454,14 @@ after accessing a value, process it with the code block above
             } else if (stormRoll1 === 29) {
                 //B
             } else if (stormRoll1 > 25) {
-                stormResult = aResult();
+                stormInfo = aResult(temp);
             } else {
                 stormInfo = "no measurable precipitation today";
             }
             break;
         case 3:
             if (stormRoll1 === 30) {
-                //F
+                stormInfo = fResult(temp);
             } else if (stormRoll1 === 29) {
                 //E
             } else if (stormRoll1 > 24) {
@@ -350,14 +471,14 @@ after accessing a value, process it with the code block above
             } else if (stormRoll1 > 19) {
                 //B
             } else if (stormRoll1 > 15) {
-                stormResult = aResult();
+                stormInfo = aResult(temp);
             } else {
                 stormInfo = "no measurable precipitation today";
             }
             break;
         case 4:
             if (stormRoll1 > 28) {
-                //F
+                stormInfo = fResult(temp);
             } else if (stormRoll1 > 25) {
                 //E
             } else if (stormRoll1 > 21) {
@@ -367,14 +488,14 @@ after accessing a value, process it with the code block above
             } else if (stormRoll1 > 14) {
                 //B
             } else if (stormRoll1 > 8) {
-                stormResult = aResult();
+                stormInfo = aResult(temp);
             } else {
                 stormInfo = "no measurable precipitation today";
             }
             break;
         case 5:
             if (stormRoll1 > 27) {
-                //F
+                stormInfo = fResult(temp);
             } else if (stormRoll1 > 23) {
                 //E
             } else if (stormRoll1 > 18) {
@@ -384,13 +505,12 @@ after accessing a value, process it with the code block above
             } else if (stormRoll1 > 9) {
                 //B
             } else if (stormRoll1 > 4) {
-                stormResult = aResult();
+                stormInfo = aResult(temp);
             } else {
                 stormInfo = "no measurable precipitation today";
             }
     }
-    //build stormInfo string
-    stormInfo = "";
+    stormInfo = fResult(temp); //TESTING
     readOut += "<br>Precipitation &amp; storms: " + stormInfo;
     document.getElementById("weathRslt").innerHTML = readOut;
 }
