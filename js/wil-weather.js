@@ -234,23 +234,24 @@ function tornadoCalc(hook) {
 function tornadoBldr(tornado) {
     let result;
     switch (tornado) {
-        case tornado < 10:
+        case 5:
+        case 1:
             tornado = "minor damage (class 1)";
             break;
         case 10:
-            tornado = "(class 2)";
+            tornado = "moderate damage (class 2)";
             break;
         case 15:
-            tornado = "(class 3)";
+            tornado = "significant damage (class 3)";
             break;
         case 20:
-            tornado = "(class 4)";
+            tornado = "devastation (class 4)";
             break;
         case 25:
-            tornado = "(class 5)";
+            tornado = "considerable devastation (class 5)";
             break;
         case 30:
-            tornado = "(class 6)";
+            tornado = "widespread devastation (class 6)";
     }
     result = "A tornado forms nearby or in the distance and causes " + tornado + ".";
     return result;
@@ -301,10 +302,53 @@ function aResult(temp) {
     return result;
 }
 function bResult(temp,severity,pause) {
-    let i,j,result;
-    let thisBlock = [];
+    let i,result;
+    let thisCell = [];
+    let cellDur = [];
+    let stormDur = 0; //duration of storm with no breaks
+    let cellBreak = [];
     let tornado = 0;
     let tornado2 = 0;
+    for (i=0;i<rollDie(1,6) + 2;i++) {
+        cellDur[i] = rollDie(1,10) + 20;
+        stormDur += cellDur[i];
+        thisCell[i] = stormBldr(severity,temp);
+        tornado2 = thisCell[i][1];
+        if (tornado2 > tornado) {
+            tornado = tornado2;
+        }
+    }
+    let hours = Math.floor(stormDur/60);
+    let minutes = stormDur%60;
+    if (minutes) {
+        minutes = " and " + minutes + " minutes"
+    } else {
+        minutes = "";
+    }
+    if (pause) {
+        result = "A cluster of storms.<br>";
+    } else {
+        result = "A storm occurs for " + hours + " hours" + minutes + ".<br>";
+    }
+    if (pause) {
+        for (i=0;i<thisCell.length;i++) {
+            cellBreak[i] = Math.floor(rollDie(1,30)/2);
+        }
+        cellBreak[cellBreak.length-1] = "";
+    }
+    for (i=0;i<thisCell.length;i++) {
+        result += thisCell[i][0] + "For " + cellDur[i] + " minutes.";
+        if (pause && cellBreak[i]) {
+            result += " Then " + cellBreak[i] + " minutes of calm.";
+        }
+        result += "<br><br>";
+    }
+    //report on tornado (or not)
+    if (tornado) {
+        tornado = tornadoBldr(tornado); //tornado becomes final text string w/ tornado info
+        result += tornado;
+    }
+    return result;
 }
 function fResult(temp) {
     let i,j,result;
@@ -453,9 +497,9 @@ after accessing a value, process it with the code block above
             break;
         case 2:
             if (stormRoll1 === 30) {
-                stormInfo = bResult(temp,"n",false);
+                stormInfo = bResult(temp,"n",false); //D
             } else if (stormRoll1 === 29) {
-                stormInfo = bResult(temp,"n",true);
+                stormInfo = bResult(temp,"n",true); //B
             } else if (stormRoll1 > 25) {
                 stormInfo = aResult(temp);
             } else {
@@ -513,7 +557,6 @@ after accessing a value, process it with the code block above
                 stormInfo = "no measurable precipitation today";
             }
     }
-    stormInfo = bResult(temp,"n",true); //TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
     readOut += "<br>Precipitation &amp; storms: " + stormInfo;
     document.getElementById("weathRslt").innerHTML = readOut;
 }
