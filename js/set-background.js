@@ -4,10 +4,10 @@ let govBy = ["none (lawless society)","money (all decisions made by financial pr
 let reaction = ["accepting of","aggravated by","amused by","annoyed with","anxious around","apathetic toward","bored by","curious about","cynical of","enraged by","enthralled with","envious of","excited by","frustrated with","grumpy around","impressed by","indifferent to","infuriated by","irritated by","melancholy about","peaceful around","pissed off with","predatory of","rejecting of","restless around","sympathetic toward","tired of","uncomfortable around","unimpressed by","weird around"];
 let outlook = ["booming","bullish/hopeful","depressed","doomed - 1 in 30 chance each day of collapsing","expanding","inflationary","overheated/growing too fast","recessionary","uncontrolled/fluctuating - prices/taxes could be low, average or exorbitant each day","weak"];
 let setIssues = ["beggars/vagrancy","drunkards","corruption","disease","feuding","fire","prostitution","theft (pickpockets)","unrest (general)","waste issues"];
-let threats = ["bandits (thieves)","barbarians (horde)","beetles, giant","bugbears","chimera","clerics (evil)","dragon","elves (evil)","ettin","gargoyles","ghouls","giant(s)","gnolls","goblins","harpie(s)","hobgoblins","kobolds","lizard men","mage (hostile)","manticore","ogre(s)","ogre mage","pterodactyl","roc","skeletons","troglodytes","trolls","witch","wolves","zombies"];
+let threats = ["bandits (thieves)","barbarians (horde)","beetles, giant","bugbears","chimera","clerics (evil)","dragon","elves (evil)","ettin","gargoyles","giant(s)","gnolls","goblins","harpie(s)","hobgoblins","kobolds","lizard men","mage (hostile)","manticore","ogre(s)","ogre mage","pterodactyl","roc","troglodytes","trolls","witch","wolves","ghouls","skeletons","zombies"];
 $("#setRoll").click(function () {
     let roll1 = rollDie(0,29);
-    let oligCnt,govByVal,prices,issueType,theIssue,issueDegree,threat;
+    let oligCnt,govByVal,prices,issueType,theIssue,issueDegree,threat,threatTxt;
     document.getElementById("govTitle").innerHTML = govType[roll1];
     govByVal = govBy[roll1];
     if (roll1 === 17) {
@@ -41,6 +41,34 @@ $("#setRoll").click(function () {
     }
     document.getElementById("issueSpot").innerHTML = theIssue;
     issueDegree = rollDie(1,3);
+    if (issueDegree === 1) {
+        theIssue = "minor/contained";
+    } else if (issueDegree === 2) {
+        theIssue = "moderate/widespread";
+    } else {
+        theIssue = "major/pervasive";
+    }
+    if (issueDegree < 3) {
+        if (issueType === 3 || issueType === 5) {
+            theIssue += " (but will spread)"
+        }
+    }
+    document.getElementById("theSeverity").innerHTML = theIssue;
     //nearby threats
     threat = rollDie(0,29);
+    threatTxt = threats[threat];
+    if (threat > 26) {
+        threatTxt += " - origin: ";
+        switch (rollDie(1,3)) {
+            case 1:
+                threatTxt += "roaming";
+                break;
+            case 2:
+                threatTxt += "lich";
+                break;
+            case 3:
+                threatTxt += "vampire";
+        }
+    }
+    document.getElementById("theThreat").innerHTML = threatTxt;
 });
