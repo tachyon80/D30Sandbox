@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heraldry Generator</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Heraldry Generator</h2>
+<div class="content">
+    <div class="sidebyWrap">
+        <div class="sideBySide">
+            <h3>Divisions</h3>
+            <div class="dispImgPicker">
+                <img src="" alt="shield" id="shield" class="hideIt">
+                <span id="sign1"></span>
+            </div>
+            <button id="shieldRoll" class="rollBtn">ROLL</button>
+        </div>
+        <div class="sideBySide">
+            <ul>
+                <li id="clrValue1"></li>
+                <li id="clrValue2"></li>
+                <li id="clrValue3"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="sidebyWrap">
+        <div class="sideBySide">
+            <h3>Basic Charges</h3>
+            <div class="dispImgPicker">
+                <img src="" alt="charge" id="charge" class="hideIt">
+                <span id="sign2"></span>
+            </div>
+            <button id="chargeRoll" class="rollBtn">ROLL</button>
+        </div>
+        <div class="sideBySide">
+            <h3>Other Charges</h3>
+            <ul>
+                <li>
+                    <input type="radio" name="charges" value="quadruped">
+                    <span>Quadrupeds (common)</span>
+                </li>
+                <li>
+                    <input type="radio" name="charges" value="birds">
+                    <span>Birds/Avians</span>
+                </li>
+                <li>
+                    <input type="radio" name="charges" value="rare">
+                    <span>Rare Animals</span>
+                </li>
+                <li>
+                    <input type="radio" name="charges" value="extra">
+                    <span>Extraordinary Animals</span>
+                </li>
+                <li>
+                    <input type="radio" name="charges" value="fish">
+                    <span>Aquatic Animals/Fish</span>
+                </li>
+                <li>
+                    <input type="radio" name="charges" value="plants">
+                    <span>Plants</span>
+                </li>
+                <li>
+                    <input type="radio" name="charges" value="misc">
+                    <span>Other/Misc.</span>
+                </li>
+                <li>
+                    <p>
+                        <span id="altCharge"></span>
+                    </p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-heraldry.js"></script>
+</body>
+</html>
