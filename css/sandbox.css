@@ -191,6 +191,9 @@ label { /* title for group of inputs */
     font-size: 1.25rem;
     display: block;
 }
+ul + label {
+    margin-top: 1rem;
+}
 .sidebyWrap {
     display: flex;
 }

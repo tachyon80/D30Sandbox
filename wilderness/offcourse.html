@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Off-Course Determination</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Off-Course Determination</h2>
+<div class="content">
+    <p>If PCs have gotten lost or gone off course (as determined by rules edition being used), roll for the party’s new direction of travel.</p>
+    <div class="sidebyWrap">
+        <div class="sideBySide">
+            <h3>Impairments</h3>
+            <label>Fog</label>
+            <ul>
+                <li>
+                    <input type="radio" name="fogPck" value="0" checked><span>no fog</span>
+                </li>
+                <li>
+                    <input type="radio" name="fogPck" value="2"><span>fog, mild (vision 101-150')</span>
+                </li>
+                <li>
+                    <input type="radio" name="fogPck" value="4"><span>fog, moderate (vision 51-100')</span>
+                </li>
+                <li>
+                    <input type="radio" name="fogPck" value="8"><span>fog, heavy (vision 1-50')</span>
+                </li>
+            </ul>
+            <label>Navigator/Mapper Drunk</label>
+            <ul>
+                <li>
+                    <input type="radio" name="drunkPck" value="0" checked><span>not drunk</span>
+                </li>
+                <li>
+                    <input type="radio" name="drunkPck" value="1"><span>just a little</span>
+                </li>
+                <li>
+                    <input type="radio" name="drunkPck" value="2"><span>drunk</span>
+                </li>
+                <li>
+                    <input type="radio" name="drunkPck" value="3"><span>real drunk</span>
+                </li>
+            </ul>
+            <label>Winds (while on water)</label>
+            <select id="windVal">
+                <option value="0">0 mph (or not on water)</option>
+                <option value="1">10 mph</option>
+                <option value="2">20 mph</option>
+                <option value="3">30 mph</option>
+                <option value="4">40 mph</option>
+                <option value="5">50 mph</option>
+                <option value="6">60 mph</option>
+            </select>
+        </div>
+        <div class="sideBySide">
+            <h3>Impairments</h3>
+            <label>Navigating by Stars</label>
+            <ul>
+                <li>
+                    <input type="radio" name="starPck" value="0" checked><span>night sky clear</span>
+                </li>
+                <li>
+                    <input type="radio" name="starPck" value="1"><span>night sky overcast</span>
+                </li>
+                <li>
+                    <input type="radio" name="starPck" value="4"><span>stars moderately obscured</span>
+                </li>
+                <li>
+                    <input type="radio" name="starPck" value="8"><span>stars completely obscured</span>
+                </li>
+            </ul>
+            <label>Precipitation</label>
+            <ul>
+                <li>
+                    <input type="radio" name="rainPck" value="0" checked><span>none</span>
+                </li>
+                <li>
+                    <input type="radio" name="rainPck" value="1"><span>light</span>
+                </li>
+                <li>
+                    <input type="radio" name="rainPck" value="3"><span>moderate</span>
+                </li>
+                <li>
+                    <input type="radio" name="rainPck" value="5"><span>heavy</span>
+                </li>
+            </ul>
+        </div>
+        <div class="sideBySide">
+            <h3>Roll Adjustments</h3>
+            <ul>
+                <li>
+                    <input type="checkbox" id="directSense" value="yes">
+                    <span>navigator/mapper has “direction sense”</span>
+                </li>
+            </ul>
+            <label>Familiarity with location/route</label>
+            <ul>
+                <li>
+                    <input type="radio" name="famPck" value="0" checked><span>-0 none</span>
+                </li>
+                <li>
+                    <input type="radio" name="famPck" value="1"><span>-1 has been once or twice</span>
+                </li>
+                <li>
+                    <input type="radio" name="famPck" value="2"><span>-2</span>
+                </li>
+                <li>
+                    <input type="radio" name="famPck" value="3"><span>-3 has been several times</span>
+                </li>
+                <li>
+                    <input type="radio" name="famPck" value="4"><span>-4</span>
+                </li>
+                <li>
+                    <input type="radio" name="famPck" value="5"><span>-5 very familiar (knows well)</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <button id="offcourseRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <span id="offcourseRslt"></span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-offcourse.js"></script>
+</body>
+</html>
