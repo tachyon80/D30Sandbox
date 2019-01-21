@@ -99,15 +99,15 @@ function moderate(adjust) {
             case 30:
                 result = 90;
         }
-    }
-    if (theNum % 2 === 0) {
-        left = true;
-    }
-    result += "&#176; off course to the ";
-    if (left) {
-        result += "left (port) side.";
-    } else {
-        result += "right (starboard) side.";
+        if (theNum % 2 === 0) {
+            left = true;
+        }
+        result += "&#176; off course to the ";
+        if (left) {
+            result += "left (port) side.";
+        } else {
+            result += "right (starboard) side.";
+        }
     }
     return result;
 }
@@ -123,12 +123,12 @@ function heavy(adjust) {
         result = "party stays on course"
     } else {
         result = theNum * 6;
-    }
-    result += "&#176; off course to the ";
-    if (left) {
-        result += "left (port) side.";
-    } else {
-        result += "right (starboard) side.";
+        result += "&#176; off course to the ";
+        if (left) {
+            result += "left (port) side.";
+        } else {
+            result += "right (starboard) side.";
+        }
     }
     return result;
 }
