@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Foraging and Hunting</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Foraging and Hunting</h2>
+<div class="content">
+    <div class="sidebyWrap">
+        <div class="sideBySide">
+            <label>Climate</label>
+            <ul>
+                <li>
+                    <input type="radio" name="climatePck" value="2" checked><span>temperate</span>
+                </li>
+                <li>
+                    <input type="radio" name="climatePck" value="1"><span>subtropical</span>
+                </li>
+                <li>
+                    <input type="radio" name="climatePck" value="0"><span>tropical</span>
+                </li>
+                <li>
+                    <input type="radio" name="climatePck" value="3"><span>subarctic</span>
+                </li>
+                <li>
+                    <input type="radio" name="climatePck" value="4"><span>arctic</span>
+                </li>
+            </ul>
+        </div>
+        <div class="sideBySide">
+            <label>Season</label>
+            <ul>
+                <li>
+                    <input type="radio" name="seasonPck" value="0" checked><span>spring</span>
+                </li>
+                <li>
+                    <input type="radio" name="seasonPck" value="1"><span>summer</span>
+                </li>
+                <li>
+                    <input type="radio" name="seasonPck" value="2"><span>fall</span>
+                </li>
+                <li>
+                    <input type="radio" name="seasonPck" value="3"><span>winter</span>
+                </li>
+            </ul>
+        </div>
+        <div class="sideBySide">
+            <label>Terrain</label>
+            <ul>
+                <li>
+                    <input type="radio" name="terrainPck" value="0" checked><span>hills</span>
+                </li>
+                <li>
+                    <input type="radio" name="terrainPck" value="1"><span>mountains</span>
+                </li>
+                <li id="cond1">
+                    <input type="radio" name="terrainPck" value="2"><span>forest</span>
+                </li>
+                <li>
+                    <input type="radio" name="terrainPck" value="3"><span>plains</span>
+                </li>
+                <li id="cond2">
+                    <input type="radio" name="terrainPck" value="4"><span>swamp</span>
+                </li>
+                <li>
+                    <input type="radio" name="terrainPck" value="5"><span>desert</span>
+                </li>
+                <li>
+                    <input type="radio" name="terrainPck" value="6"><span>coast</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <fieldset>
+        <legend>Foraging</legend>
+        <p>Each roll is a character searching for 2 turns to find 1 full day’s rations. Maximum number of foraging attempts is 2. Characters with foraging proficiency check in 1 turn (instead of 2), and may make up to 4 attempts.</p>
+        <button id="forageRoll" class="rollBtn">ROLL</button>
+        <div class="resultRow">
+            <span id="forageRslt">&nbsp;</span>
+        </div>
+    </fieldset>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-hunting.js"></script>
+</body>
+</html>
