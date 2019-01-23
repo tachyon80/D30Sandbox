@@ -84,7 +84,26 @@
     </fieldset>
     <fieldset>
         <legend>Hunting</legend>
-        <p>filler</p>
+        <p>Hunting takes 4 turns during early morning or late evening hours. Hunting in off hours gives a penalty. Every hunter after the first gives a penalty (but each hunter may roll and more hunters may bring back more game). Missiles must cause more than 1d4 damage to bring down large game.</p>
+        <ul>
+            <li>
+                <select name="huntCnt" id="huntOp">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <span># of hunters</span>
+            </li>
+            <li>
+                <input type="checkbox" id="offHours" value="yes">
+                <span>during off hours</span>
+            </li>
+            <li>
+                <input type="checkbox" id="isProficient" value="yes">
+                <span>hunter(s) has proficiency</span>
+            </li>
+        </ul>
         <button id="huntRoll" class="rollBtn">ROLL</button>
         <div class="resultRow">
             <span id="huntRslt">&nbsp;</span>

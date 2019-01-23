@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Natural Features and Phenomena</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Natural Features &amp; Phenomena</h2>
+<div class="content">
+    <p>For each sub-level hex, roll to determine if there is a variation from the normal terrain found in the containing atlas-level hex.</p>
+    <label>Terrain</label>
+    <ul>
+        <li>
+            <input type="radio" name="terrainPck" value="0" checked><span>hills</span>
+        </li>
+        <li>
+            <input type="radio" name="terrainPck" value="1"><span>mountains</span>
+        </li>
+        <li>
+            <input type="radio" name="terrainPck" value="2"><span>forest</span>
+        </li>
+        <li>
+            <input type="radio" name="terrainPck" value="3"><span>plains</span>
+        </li>
+        <li>
+            <input type="radio" name="terrainPck" value="4"><span>swamp</span>
+        </li>
+        <li>
+            <input type="radio" name="terrainPck" value="5"><span>desert</span>
+        </li>
+        <li>
+            <input type="radio" name="terrainPck" value="6"><span>coast</span>
+        </li>
+    </ul>
+    <button id="featRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <span id="featRslt">&nbsp;</span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-natFeature.js"></script>
+</body>
+</html>
