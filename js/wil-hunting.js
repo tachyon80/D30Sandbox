@@ -15,6 +15,14 @@ function forage(climate,season,terrain) {
     }
     document.getElementById("forageRslt").innerHTML = result;
 }
+function hunt(climate,season,terrain) {
+    let data = huntData[climate][terrain][season];
+    let result = "";
+    if (data < rollDie(1,30)) {
+        result += "no game found";
+    }
+    document.getElementById("huntRslt").innerHTML = result;
+}
 $("input[name=climatePck]").change(function () {
     let cond1 = $("#cond1");
     let cond2 = $("#cond2");
@@ -34,4 +42,10 @@ $("#forageRoll").click(function () {
     let season = parseInt($("input[name=seasonPck]:checked").val());
     let terrain = parseInt($("input[name=terrainPck]:checked").val());
     forage(climate,season,terrain);
+});
+$("#huntRoll").click(function () {
+    let climate = parseInt($("input[name=climatePck]:checked").val());
+    let season = parseInt($("input[name=seasonPck]:checked").val());
+    let terrain = parseInt($("input[name=terrainPck]:checked").val());
+    hunt(climate,season,terrain);
 });
