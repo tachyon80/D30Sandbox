@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Castle/Keep/Stronghold Generator</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Castle/Keep/Stronghold Generator</h2>
+<div class="content">
+    <label>Patrol size based on:</label>
+    <ul>
+        <li>
+            <input type="radio" name="lvlPck" value="1" checked><span>owner's level</span>
+        </li>
+        <li>
+            <input type="radio" name="lvlPck" value="0"><span>random</span>
+        </li>
+    </ul>
+    <button id="castleRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <h4>Owner:</h4>
+        <span id="ownerRslt">&nbsp;</span>
+    </div>
+    <div class="resultRow">
+        <h4>Patrol:</h4>
+        <span id="patrolRslt">&nbsp;</span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-castle.js"></script>
+</body>
+</html>
