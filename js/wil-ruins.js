@@ -4,6 +4,15 @@ let character = ["burned/charred","collapsed/crumbling","covered in vines/sand/r
 let degree = ["slightly/barely","moderately/noticeably","severely/extremely"];
 let inhabSize = ["nuisance","infested","overrun"];
 let inhabType = ["chimeras","humanoids &mdash; ","humans","insects","lycanthropes","magical","mammals","molds/slimes/jellies","reptiles/reptilians","undead"];
+let inhabList = [["","harpies","centaurs","minotaurs","medusae","satyrs","cockatrices","manticores","lammasus","lamias","chimeras","sphinxes"],[null],["by level..."],["giant centipedes","giant ants","giant beetles","giant spiders","giant wasps","giant scorpions"],["","wererats","werewolves","wereboars","weretigers","werebears","devil swines"],["stirges","gargoyles","living statues","blink dogs","basilisks","","rust monsters","invisible stalkers","rakshasa","salamanders","djinn","efreet","ropers","giant slugs","purple worms"],["badgers","wolves","dire wolves","giant skunks","giant porcupines"],["yellow mold","green slime","","gray ooze","gelatinous cube","ochre jelly","","","","black puddings"],["spitting cobras","pit vipers","giant rattlers","rock pythons","giant lizards","hydras","wyverns","nagas","white dragons","black dragons","green dragons","blue dragons","red dragons","gold dragons"],["skeletons","zombies","ghouls","wights","wraiths","mummies","spectres","vampires","","ghosts","","lich(es)"]];
+let humList1 = ["kobolds","goblins"];
+let humList2 = ["orcs","hobgoblins","gnolls","lizard men","troglodytes"];
+let humList3 = ["","bugbears","","ogres","ogre magi","trolls","","hill giants","stone giants","frost giants","fire giants","cyclopses","cloud giants","storm giants"];
+let mRow = document.getElementById("monsterRow");
+let cells = $(mRow).children().slice(1);
+let mTitle = mRow.firstElementChild;
+let i;
+let prntList = [];
 $("#ruinRoll").click(function () {
     let inhabRoll = rollDie(0,9);
     let inhabDescrip = inhabType[inhabRoll];
@@ -14,11 +23,27 @@ $("#ruinRoll").click(function () {
         let humRoll = rollDie(1,3);
         if (humRoll < 2) {
             inhabDescrip += "small-sized";
+            mTitle.innerHTML = "humanoids, small";
+            prntList = humList1;
         } else if (humRoll > 2) {
             inhabDescrip += "human-sized";
+            mTitle.innerHTML = "humanoids, medium";
+            prntList = humList2;
         } else {
             inhabDescrip += "giant-class";
+            mTitle.innerHTML = "humanoids, giant";
+            prntList = humList3;
         }
+    } else {
+        mTitle.innerHTML = inhabType[inhabRoll];
+        prntList = inhabList[inhabRoll];
     }
     document.getElementById("inhabRslt").innerHTML = inhabDescrip;
+    for (i=0;i<cells.length;i++) {
+        cells[i].innerHTML = "";
+    }
+    for (i=0;i<prntList.length;i++) {
+        cells[i].innerHTML = prntList[i];
+    }
+    $("#monsterTbl").removeClass("hideIt");
 });
