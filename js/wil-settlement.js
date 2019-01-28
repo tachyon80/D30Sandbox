@@ -1,11 +1,37 @@
 //Settlements & Inhabitation page 18
 let habType = ["single dwelling","thorp","hamlet","village","town, small","town, large","city, small","city, large","castle/keep/stronghold","temple","ruins","special"];
-let specialDens = ["manor","peasant long house","orphanage","traders’ village","mill","military barracks","church","chapterhouse","bath house","alehouse/tavern/inn"];
-let specialScatt = ["manor","farmstead","migrant camp","mill","military structure","abbey","priory","nunnery","bath house","inn"];
-let specialFront = ["manor","trading outpost","military outpost","military camp","work camp","abbey","priory","nunnery","hermitage","nomad camp"];
-let specialUnsett = ["hermit","trading outpost","military outpost","military camp","work camp","prison","hermitage","nomad camp","monastery","re-roll"];
-let specialDesol = ["abandoned/forgotten tower","abandoned/forgotten castle/fortress","abandoned/forgotten temple","abandoned/forgotten town","abandoned/forgotten city","sunken city (partially submerged in ground)","lost city (below ground)","shrine","hermit","monastery"];
+function rollDesol() {
+    rollD = rollDie(1,30);
+    let answer;
+    if (rollD < 7) {
+        answer = "abandoned/forgotten tower";
+    } else if (rollD < 12) {
+        answer = "abandoned/forgotten castle/fortress";
+    } else if (rollD < 14) {
+        answer = "abandoned/forgotten temple";
+    } else if (rollD < 16) {
+        answer = "abandoned/forgotten town";
+    } else if (rollD < 18) {
+        answer = "abandoned/forgotten city";
+    } else if (rollD < 19) {
+        answer = "sunken city (partially submerged in ground)";
+    } else if (rollD < 20) {
+        answer = "lost city (below ground)";
+    } else if (rollD < 23) {
+        answer = "shrine";
+        if (rollDie(1,3) < 3) {
+            answer += " (inactive)";
+        }
+    } else if (rollD < 30) {
+        answer = "hermit";
+    } else {
+        answer = "monastery";
+    }
+    return answer;
+}
+let speclOp = $("#spclOpt");
 $("#settRoll").click(function () {
+    speclOp.addClass("hideIt");
     let habRslt = parseInt($("input[name=densPck]:checked").val());
     let roll1 = rollDie(1,3);
     let roll2 = rollDie(1,30);
@@ -14,16 +40,18 @@ $("#settRoll").click(function () {
     //decide habitation type
     if (roll1 < 2) { //might be inhabited
         if (habRslt === 0) { //desolate
-            if (roll2 < 24) {
+            if (roll2 < 23) {
                 //uninhabited
-            } else if (roll2 < 26) {
+            } else if (roll2 < 25) {
                 result = "single dwelling";
-            } else if (roll2 < 27) {
+            } else if (roll2 < 26) {
                 result = "thorp";
-            } else if (roll2 < 28) {
+            } else if (roll2 < 27) {
                 result = "hamlet";
-            } else {
+            } else if (roll2 < 30) {
                 result = "ruins";
+            } else {
+                result = "special";
             }
         } else if (habRslt === 1) { //unsettled
             if (roll2 < 14) {
@@ -158,19 +186,104 @@ $("#settRoll").click(function () {
                     break;
                 case "special":
                     let roll3 = rollDie(1,30);
-                    switch (habRslt) {
-                        case 0:
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                    }
                     result += " &mdash; ";
-                    break;
+                    switch (habRslt) {
+                        case 0: //desolate
+                            result += rollDesol();
+                            break;
+                        case 1: //unsettled
+                            if (roll3 < 2) {
+                                result += "hermit";
+                            } else if (roll3 < 7) {
+                                result += "trading outpost";
+                            } else if (roll3 < 13) {
+                                result += "military outpost";
+                            } else if (roll3 < 16) {
+                                result += "military camp";
+                            } else if (roll3 < 18) {
+                                result += "work camp";
+                            } else if (roll3 < 20) {
+                                result += "prison";
+                            } else if (roll3 < 23) {
+                                result += "hermitage";
+                            } else if (roll3 < 26) {
+                                result += "nomad camp";
+                            } else if (roll3 < 30) {
+                                result += "monastery";
+                            } else {
+                                result += rollDesol();
+                            }
+                            break;
+                        case 2: //frontier
+                            if (roll3 < 4) {
+                                result += "manor";
+                            } else if (roll3 < 12) {
+                                result += "trading outpost";
+                            } else if (roll3 < 17) {
+                                result += "military outpost";
+                            } else if (roll3 < 19) {
+                                result += "military camp";
+                            } else if (roll3 < 21) {
+                                result += "work camp";
+                            } else if (roll3 < 22) {
+                                result += "abbey";
+                            } else if (roll3 < 23) {
+                                result += "priory";
+                            } else if (roll3 < 24) {
+                                result += "nunnery";
+                            } else if (roll3 < 27) {
+                                result += "hermitage";
+                            } else {
+                                result += "nomad camp";
+                            }
+                            break;
+                        case 3: //scattered
+                            if (roll3 < 5) {
+                                result += "manor";
+                            } else if (roll3 < 8) {
+                                result += "farmstead";
+                            } else if (roll3 < 11) {
+                                result += "migrant camp";
+                            } else if (roll3 < 14) {
+                                result += "mill";
+                            } else if (roll3 < 16) {
+                                result += "military structure";
+                            } else if (roll3 < 17) {
+                                result += "abbey";
+                            } else if (roll3 < 18) {
+                                result += "priory";
+                            } else if (roll3 < 19) {
+                                result += "nunnery";
+                            } else if (roll3 < 21) {
+                                result += "bath house";
+                            } else {
+                                result += "inn";
+                            }
+                            break;
+                        case 4: //dense
+                            if (roll3 < 5) {
+                                result += "manor";
+                            } else if (roll3 < 8) {
+                                result += "peasant long house";
+                            } else if (roll3 < 11) {
+                                result += "orphanage";
+                            } else if (roll3 < 14) {
+                                result += "traders’ village";
+                            } else if (roll3 < 16) {
+                                result += "mill";
+                            } else if (roll3 < 19) {
+                                result += "military barracks";
+                            } else if (roll3 < 22) {
+                                result += "church";
+                            } else if (roll3 < 25) {
+                                result += "chapterhouse";
+                            } else if (roll3 < 28) {
+                                result += "bath house";
+                            } else {
+                                result += "alehouse/tavern/inn";
+                            }
+                    }
+                    speclOp.removeClass("hideIt");
             }
         }
     }
