@@ -119,9 +119,9 @@ h4 { /* result title */
     margin: 1rem 0;
 }
 .rollBtn {
-    -moz-box-shadow: 0px 10px 14px -7px #276873;
-    -webkit-box-shadow: 0px 10px 14px -7px #276873;
-    box-shadow: 0px 10px 14px -7px #276873;
+    -moz-box-shadow: 0 10px 14px -7px #276873;
+    -webkit-box-shadow: 0 10px 14px -7px #276873;
+    box-shadow: 0 10px 14px -7px #276873;
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #113251), color-stop(1, #6A93B9));
     background:-moz-linear-gradient(top, #113251 5%, #6A93B9 100%);
     background:-webkit-linear-gradient(top, #113251 5%, #6A93B9 100%);
@@ -141,7 +141,7 @@ h4 { /* result title */
     font-weight:bold;
     padding:8px 24px;
     text-decoration:none;
-    text-shadow:0px 1px 0px #3d768a;
+    text-shadow:0 1px 0 #3d768a;
 }
 .rollBtn:hover {
     background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #6A93B9), color-stop(1, #113251));
@@ -197,13 +197,16 @@ ul + label {
 .sidebyWrap {
     display: flex;
 }
-.sideBySide {
+.sideBySide,
+.singleton {
     margin: 0 2rem 1rem 0;
 }
-.sideBySide input {
+.sideBySide input,
+.singleton input {
     vertical-align: middle;
 }
-.sideBySide input[type=radio] {
+.sideBySide input[type=radio],
+.singleton input[type=radio] {
     margin: 0 2px 0 0;
 }
 .dispImgPicker {

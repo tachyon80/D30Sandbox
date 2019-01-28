@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settlements and Inhabitation by Population Density</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Settlements &amp; Inhabitation by Population Density</h2>
+<div class="content">
+    <p>Check each sub-level hex for the presence of settlements and/or habitations.</p>
+    <label>Population Density</label>
+    <ul class="singleton">
+        <li>
+            <input type="radio" name="densPck" value="0" checked><span>desolate</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="1"><span>unsettled</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="2"><span>frontier</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="3"><span>scattered</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="4"><span>dense</span>
+        </li>
+    </ul>
+    <button id="settRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <span id="typeRslt">&nbsp;</span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-settlement.js"></script>
+</body>
+</html>
