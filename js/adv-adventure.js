@@ -59,7 +59,7 @@ function keyNpc() {
             final += " <span id='occupationInfo'></span>";
             break;
         case 23:
-            final += " <span id='nobTitle'></span> - <span id='nobRelat'></span>";
+            final += " <span id='nobTitle'></span> - relation to king: <span id='nobRelat'></span>";
             break;
         case 24:
             final += " <span id='nobHouse'></span>";
