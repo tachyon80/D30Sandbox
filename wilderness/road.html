@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Road Encounters</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Road Encounters</h2>
+<div class="content">
+    <p>Encounters along traveled roads, according to general population density of the area.</p>
+    <label>Population Density</label>
+    <ul class="singleton">
+        <li>
+            <input type="radio" name="densPck" value="0" checked><span>desolate</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="1"><span>unsettled</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="2"><span>frontier</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="3"><span>scattered</span>
+        </li>
+        <li>
+            <input type="radio" name="densPck" value="4"><span>dense</span>
+        </li>
+    </ul>
+    <button id="roadRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <h4>Result:</h4>
+        <span id="roadRslt"></span>
+    </div>
+    <div class="">
+        <div class="resultRow">
+            <h4>Level of Attackers (vs. PCs):</h4>
+            <span id="lvlRslt"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Party Size (vs. PCs):</h4>
+            <span id="sizRslt"></span>
+        </div>
+        <div class="resultRow">
+            <h4>Treasure:</h4>
+            <span id="treasRslt"></span>
+        </div>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/wil-road.js"></script>
+<script src="../js/npc-occupation1.js"></script>
+<script src="../js/npc-occupation2.js"></script>
+</body>
+</html>
