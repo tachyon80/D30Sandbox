@@ -157,14 +157,17 @@ function hostile() {
 }
 function attack(event) {
     let roll1 = rollDie(1,6);
-    let roll2 = rollDie(0,5);
+    let roll2 = rollDie(1,5);
+    let treasCol = rollDie(0,2);
+    let treasNum = rollDie(0,9);
     let result = "";
-    let parSiz,lvlAtt;
+    let parSiz,lvlAtt,column,i;
+    let hoard = "";
     let treasure = [["1,000 c.p.","+1,000 s.p.","+250 e.p.","+2,000 g.p.","+2,000 g.p.","+250 p.p","+6 gems","+6 jewelry items","+1 magic item","+1 magic item"],["2,000 c.p.","+2,000 s.p.","+500 e.p.","+3,000 g.p.","+3,000 g.p.","+500 p.p.","+12 gems","+12 jewelry items","+1 magic item","+1 magic items"],["3,000 c.p.","+3,000 s.p.","+1,000 e.p.","+4,000 g.p.","+4,000 g.p.","+1,000 p.p.","+18 gems","+18 jewelry items","+1 magic item","+2 magic items"],["4,000 c.p.","+4,000 s.p.","+1,500 e.p.","+5,000 g.p.","+5,000 g.p.","+1,500 p.p.","+24 gems","+24 jewelry items","+2 magic items","+1 magic item"],["5,000 c.p.","+5,000 s.p.","+2,000 e.p.","+6,000 g.p.","+6,000 g.p.","+2,000 p.p.","+30 gems","+30 jewelry items","+2 magic items","+1 magic item"]];
     if (event === "attack") {
         result = event;
     } else if (event === "ambush") {
-        result = "ambush/surprise attack &mdash; ";
+        result = "ambush/surprise attack";
     }
     if (result) {
         roadRslt.innerHTML = result;
@@ -206,18 +209,34 @@ function attack(event) {
     }
     document.getElementById("lvlRslt").innerHTML = lvlAtt;
     document.getElementById("sizRslt").innerHTML = parSiz;
+    if (roll1 < 3) {
+        column = 0;
+    } else if (roll1 > 4) {
+        column = 2;
+    } else {
+        column = 1;
+    }
+    for (i=0;i<treasNum+1;i++) {
+        hoard += treasure[column + treasCol][i] + "<br>";
+    }
+    if (treasNum > 5) {
+        hoard += "gem/jewelry value 100 gp each";
+    }
+    document.getElementById("treasRslt").innerHTML = hoard;
+    $(atBox).removeClass("hideIt");
 }
 let roadRslt = document.getElementById("roadRslt");
+let atBox = document.getElementById("attackBox");
 $("#roadRoll").click(function () {
     let densRslt = parseInt($("input[name=densPck]:checked").val());
     let roll1 = rollDie(1,30);
-    roll1 = 23; //TESTING
+    $(atBox).addClass("hideIt");
     switch (densRslt) {
         case 0: //desolate
             if (roll1 > 29) {
-                result = "ambush";
+                attack("ambush");
             } else if (roll1 > 24) {
-                result = "attack";
+                attack("attack");
             } else if (roll1 > 22) {
                 hostile();
             } else if (roll1 > 19) {
@@ -230,9 +249,9 @@ $("#roadRoll").click(function () {
             break;
         case 1: //unsettled
             if (roll1 > 29) {
-                result = "ambush";
+                attack("ambush");
             } else if (roll1 > 24) {
-                result = "attack";
+                attack("attack");
             } else if (roll1 > 17) {
                 hostile();
             } else if (roll1 > 16) {
@@ -247,9 +266,9 @@ $("#roadRoll").click(function () {
             break;
         case 2: //frontier
             if (roll1 > 26) {
-                result = "ambush";
+                attack("ambush");
             } else if (roll1 > 20) {
-                result = "attack";
+                attack("attack");
             } else if (roll1 > 15) {
                 hostile();
             } else if (roll1 > 14) {
@@ -266,9 +285,9 @@ $("#roadRoll").click(function () {
             break;
         case 3: //scattered
             if (roll1 > 26) {
-                result = "ambush";
+                attack("ambush");
             } else if (roll1 > 20) {
-                result = "attack";
+                attack("attack");
             } else if (roll1 > 17) {
                 hostile();
             } else if (roll1 > 12) {
@@ -285,9 +304,9 @@ $("#roadRoll").click(function () {
             break;
         case 4: //dense
             if (roll1 > 27) {
-                result = "ambush";
+                attack("ambush");
             } else if (roll1 > 22) {
-                result = "attack";
+                attack("attack");
             } else if (roll1 > 15) {
                 hostile();
             } else if (roll1 > 9) {
