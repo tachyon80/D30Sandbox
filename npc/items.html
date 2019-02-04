@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NPC Equipment and Magic Items</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>NPC Equipment &amp; Magic Items</h2>
+<div class="content">
+    <div class="sidebyWrap">
+        <div class="sideBySide">
+            <label>Level</label>
+            <ul>
+                <li>
+                    <input type="radio" name="lvlPck" value="1" checked><span>1 - 3</span>
+                </li>
+                <li>
+                    <input type="radio" name="lvlPck" value="4"><span>4 - 6</span>
+                </li>
+                <li>
+                    <input type="radio" name="lvlPck" value="7"><span>7 - 9</span>
+                </li>
+                <li>
+                    <input type="radio" name="lvlPck" value="10"><span>10+</span>
+                </li>
+            </ul>
+        </div>
+        <div class="sideBySide">
+            <label>Class</label>
+            <select id="classPck">
+                <option value="fighter">Fighter/Paladin</option>
+                <option value="ranger">Ranger</option>
+                <option value="elf">Elf (B/X)</option>
+                <option value="dwarf">Dwarf (B/X)</option>
+                <option value="halfling">Halfling (B/X)</option>
+                <option value="cleric">Cleric</option>
+                <option value="druid">Druid</option>
+                <option value="muser">Magic-User/Illusionist</option>
+                <option value="thief">Thief</option>
+                <option value="assassin">Assassin</option>
+                <option value="monk">Monk</option>
+            </select>
+        </div>
+    </div>
+    <button id="itemRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <h4>Equipment:</h4>
+        <span id="equipRslt"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Magic Items:</h4>
+        <span id="itemRslt"></span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/npc-items.js"></script>
+</body>
+</html>
