@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>City Guards</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>City Guards, City Watch, Border Patrols</h2>
+<div class="content">
+    <p>
+        <input type="radio" name="pickType" value="guard" checked>
+        <span>city guard</span><br>
+        <input type="radio" name="pickType" value="day">
+        <span>city watch: day</span><br>
+        <input type="radio" name="pickType" value="night">
+        <span>city watch: night</span><br>
+        <input type="radio" name="pickType" value="patrol">
+        <span>border patrol</span><br><br>
+        <button id="guardRoll" class="rollBtn">ROLL</button>
+    </p>
+    <div class="resultRow">
+        <h4>Classed NPCs:</h4>
+        <span id="classy"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Mercenaries/Men-at-arms:</h4>
+        <span id="men"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Notes:</h4>
+        <span id="notes"></span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/set-guards.js"></script>
+<script src="../js/npc-items.js"></script>
+</body>
+</html>

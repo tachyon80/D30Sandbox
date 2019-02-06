@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settlement Suppliers</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Settlement Suppliers</h2>
+<div class="content">
+    <p>
+        <input type="radio" name="pickType" value="1" checked>
+        <span>Thorp</span><br>
+        <input type="radio" name="pickType" value="2">
+        <span>Hamlet</span><br>
+        <input type="radio" name="pickType" value="3">
+        <span>Village</span><br>
+        <input type="radio" name="pickType" value="4">
+        <span>Small Town</span><br>
+        <input type="radio" name="pickType" value="5">
+        <span>Large Town</span><br>
+        <input type="radio" name="pickType" value="6">
+        <span>Small City</span><br>
+        <input type="radio" name="pickType" value="7">
+        <span>Large City</span><br><br>
+        <button id="suppRoll" class="rollBtn">ROLL</button>
+    </p>
+    <div class="resultRow">
+        <h4>Population:</h4>
+        <span id="populat"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Vendors/Shops:</h4><br>
+        <span id="shops"></span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/set-supplier.js"></script>
+</body>
+</html>
