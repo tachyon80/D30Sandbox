@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shops and Shopkeeper Information</title>
+    <link rel="stylesheet" href="../css/sandbox.css">
+</head>
+<body>
+<h1>D30 Sandbox Companion</h1>
+<h2>Shops &amp; Shopkeeper Information</h2>
+<div class="content">
+    <p>
+        <label>Charisma modifier</label>
+        <select id="charisma">
+            <option value="-3">-3</option>
+            <option value="-2">-2</option>
+            <option value="-1">-1</option>
+            <option value="0" selected>0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+    </p>
+    <button id="descRoll" class="rollBtn">ROLL</button>
+    <div class="resultRow">
+        <h4>Shop interior: </h4>
+        <span id="interior"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Prices (% of standard): </h4>
+        <span id="prices"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Depth of stock: </h4>
+        <span id="depth"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Chance of finding items: </h4>
+        <span id="chances"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Shopkeeper attitude: </h4>
+        <span id="attitud"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Barter result (as % of standard): </h4>
+        <span id="barter"></span>
+    </div>
+    <div class="resultRow">
+        <h4>Shopkeeper reaction: </h4>
+        <span id="reaction"></span>
+    </div>
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/basic.js"></script>
+<script src="../js/set-shop.js"></script>
+</body>
+</html>
